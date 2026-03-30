@@ -1,9 +1,7 @@
 // Web Worker: computes topo contours off the main thread
 
 class SimplexNoise {
-  private perm: Uint8Array;
-  private grad3: number[][];
-  constructor(seed: number) {
+  constructor(seed) {
     this.grad3 = [
       [1,1,0],[-1,1,0],[1,-1,0],[-1,-1,0],
       [1,0,1],[-1,0,1],[1,0,-1],[-1,0,-1],
@@ -20,7 +18,7 @@ class SimplexNoise {
     }
     for (let i = 0; i < 512; i++) this.perm[i] = p[i & 255];
   }
-  noise2D(x: number, y: number): number {
+  noise2D(x, y) {
     const F2 = 0.5 * (Math.sqrt(3) - 1);
     const G2 = (3 - Math.sqrt(3)) / 6;
     const s = (x + y) * F2;
@@ -45,7 +43,7 @@ class SimplexNoise {
   }
 }
 
-function fbm(noise: SimplexNoise, x: number, y: number, octaves: number, lac: number, gain: number) {
+function fbm(noise, x, y, octaves, lac, gain) {
   let v = 0, a = 1, f = 1, m = 0;
   for (let i = 0; i < octaves; i++) { v += a * noise.noise2D(x * f, y * f); m += a; a *= gain; f *= lac; }
   return v / m;
@@ -53,7 +51,7 @@ function fbm(noise: SimplexNoise, x: number, y: number, octaves: number, lac: nu
 
 const noise = new SimplexNoise(42);
 
-self.onmessage = (e: MessageEvent) => {
+self.onmessage = (e) => {
   const { w, h, offsetX, offsetY, frameId } = e.data;
 
   const scale = 0.0025;
@@ -62,8 +60,7 @@ self.onmessage = (e: MessageEvent) => {
   const rows = Math.ceil(h / step) + 1;
   const levels = 13;
 
-  // Build height field
-  const field: Float32Array[] = [];
+  const field = [];
   for (let j = 0; j < rows; j++) {
     field[j] = new Float32Array(cols);
     for (let i = 0; i < cols; i++) {
@@ -71,9 +68,8 @@ self.onmessage = (e: MessageEvent) => {
     }
   }
 
-  // Render to OffscreenCanvas
   const canvas = new OffscreenCanvas(w, h);
-  const ctx = canvas.getContext("2d")!;
+  const ctx = canvas.getContext("2d");
   ctx.strokeStyle = "rgba(41, 37, 36, 1)";
   ctx.lineWidth = 1;
   ctx.lineJoin = "round";
@@ -92,11 +88,11 @@ self.onmessage = (e: MessageEvent) => {
         if (config === 0 || config === 15) continue;
         const x = i * step, y = j * step;
         const vTL = field[j][i], vTR = field[j][i + 1], vBR = field[j + 1][i + 1], vBL = field[j + 1][i];
-        const top: [number, number] = [x + ((threshold - vTL) / (vTR - vTL)) * step, y];
-        const right: [number, number] = [x + step, y + ((threshold - vTR) / (vBR - vTR)) * step];
-        const bottom: [number, number] = [x + ((threshold - vBL) / (vBR - vBL)) * step, y + step];
-        const left: [number, number] = [x, y + ((threshold - vTL) / (vBL - vTL)) * step];
-        const seg = (a: [number, number], b: [number, number]) => { ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]); };
+        const top = [x + ((threshold - vTL) / (vTR - vTL)) * step, y];
+        const right = [x + step, y + ((threshold - vTR) / (vBR - vTR)) * step];
+        const bottom = [x + ((threshold - vBL) / (vBR - vBL)) * step, y + step];
+        const left = [x, y + ((threshold - vTL) / (vBL - vTL)) * step];
+        const seg = (a, b) => { ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]); };
         switch (config) {
           case 1: case 14: seg(left, bottom); break;
           case 2: case 13: seg(bottom, right); break;

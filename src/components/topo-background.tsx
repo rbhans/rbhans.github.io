@@ -17,9 +17,7 @@ export function TopoBackground() {
     if (!ctx) return;
 
     // Create the worker
-    const worker = new Worker(
-      new URL("./topo-worker.ts", import.meta.url)
-    );
+    const worker = new Worker("/topo-worker.js");
     workerRef.current = worker;
     startTimeRef.current = Date.now();
 

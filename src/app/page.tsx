@@ -1,10 +1,8 @@
 import { Hero } from "@/components/hero";
 import { PillNav } from "@/components/pill-nav";
 import { WorkSection } from "@/components/work-section";
-import { SidePanel } from "@/components/side-panel";
+import { KanbanPanel } from "@/components/kanban-panel";
 import { KanbanSection } from "@/components/kanban-section";
-import { ActivityFeed } from "@/components/activity-feed";
-import { fetchRecentActivity } from "@/lib/activity";
 import { GitHubSection } from "@/components/github-section";
 import { LifeSection } from "@/components/life-section";
 import { SkillsSection } from "@/components/skills-section";
@@ -17,19 +15,14 @@ function Divider() {
   return <hr className="border-[var(--stone-200)]" />;
 }
 
-export default async function Home() {
+export default function Home() {
   const hikingImages = getImagesFromDir("hiking");
   const familyImages = getImagesFromDir("family");
   const basidekickImages = getImagesFromDir("basidekick");
   const opencrateImages = getImagesFromDir("opencrate");
-  const activityItems = await fetchRecentActivity();
-
   return (
     <>
-      <SidePanel
-        projectBoard={<KanbanSection />}
-        activityFeed={<ActivityFeed items={activityItems} />}
-      />
+      <KanbanPanel />
 
       {/* Hero */}
       <div className="relative z-10">
