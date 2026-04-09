@@ -13,7 +13,7 @@ export function ProjectCard({
   meta,
   href,
   images,
-  imageInterval = 25000,
+  imageInterval = 45000,
 }: {
   name: string;
   description: string;

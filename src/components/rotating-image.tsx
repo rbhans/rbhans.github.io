@@ -7,7 +7,7 @@ import { AnimatePresence, motion } from "framer-motion";
 export function RotatingImage({
   images,
   alt,
-  interval = 25000,
+  interval = 45000,
   className = "",
   sizes,
   onClick,
@@ -36,13 +36,13 @@ export function RotatingImage({
       aria-label={onClick ? `View ${alt} gallery` : undefined}
       className={`block h-full w-full ${onClick ? "cursor-pointer" : ""}`}
     >
-      <AnimatePresence mode="wait">
+      <AnimatePresence initial={false}>
         <motion.div
           key={images[index]}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.8, ease: "easeInOut" }}
+          transition={{ duration: 1.6, ease: "easeInOut" }}
           className="absolute inset-0"
         >
           <Image
