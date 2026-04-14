@@ -14,6 +14,7 @@ export function ProjectCard({
   href,
   images,
   imageInterval = 45000,
+  plate,
 }: {
   name: string;
   description: string;
@@ -23,6 +24,7 @@ export function ProjectCard({
   href: string;
   images?: string[];
   imageInterval?: number;
+  plate?: string;
 }) {
   const [lightboxOpen, setLightboxOpen] = useState(false);
 
@@ -32,13 +34,17 @@ export function ProjectCard({
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        whileHover={{ y: -2, boxShadow: "0 8px 24px rgba(0,0,0,0.06)" }}
+        whileHover={{ y: -2 }}
         transition={{ duration: 0.2 }}
-        className="block overflow-hidden rounded-xl border border-[var(--stone-200)] bg-white transition-colors"
+        className="paper-ruled block overflow-hidden border border-[var(--paper-border)] p-4 transition-colors"
       >
+        <div className="mb-3 flex items-center justify-between border-b border-dashed border-[var(--paper-border-strong)] pb-2 font-mono text-[9px] uppercase tracking-[2px] text-[var(--paper-ink-muted)]">
+          <span>Specimen · {plate ?? "—"}</span>
+          <span>{meta}</span>
+        </div>
         {images && images.length > 0 && (
           <div
-            className="relative h-36 w-full overflow-hidden bg-[var(--stone-100)]"
+            className="relative h-40 w-full overflow-hidden border border-[var(--paper-border-strong)]"
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
@@ -49,19 +55,19 @@ export function ProjectCard({
               images={images}
               alt={name}
               interval={imageInterval}
-              className="object-top"
+              className="object-top sepia-[15%] saturate-[0.95]"
               sizes="(max-width: 640px) 100vw, 50vw"
             />
           </div>
         )}
-        <div className="p-5">
-          <h3 className="font-[family-name:var(--font-playfair)] text-base text-[var(--stone-900)]">
+        <div className="mt-3">
+          <h3 className="font-[family-name:var(--font-playfair)] text-[17px] leading-tight text-[var(--stone-900)]">
             {name}
           </h3>
-          <p className="mt-1.5 text-xs leading-relaxed text-[var(--stone-500)]">
+          <p className="mt-1 font-[family-name:var(--font-playfair)] text-[12px] italic leading-relaxed text-[var(--paper-ink-muted)]">
             {description}
           </p>
-          <div className="mt-3 flex gap-3 font-[family-name:var(--font-geist-mono)] text-[11px] text-[var(--stone-400)]">
+          <div className="mt-2 flex items-center gap-3 font-mono text-[9px] uppercase tracking-[1.5px] text-[var(--paper-ink-muted)]">
             <span className="flex items-center gap-1.5">
               <span
                 className="inline-block h-2 w-2 rounded-full"
@@ -69,18 +75,13 @@ export function ProjectCard({
               />
               {language}
             </span>
-            <span>{meta}</span>
           </div>
         </div>
       </motion.a>
 
       <AnimatePresence>
         {lightboxOpen && images && (
-          <Lightbox
-            images={images}
-            alt={name}
-            onClose={() => setLightboxOpen(false)}
-          />
+          <Lightbox images={images} alt={name} onClose={() => setLightboxOpen(false)} />
         )}
       </AnimatePresence>
     </>

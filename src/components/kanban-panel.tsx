@@ -12,10 +12,10 @@ export function KanbanPanel() {
       {/* Tab handle — fixed to right edge */}
       <button
         onClick={() => setOpen(true)}
-        className="fixed right-0 top-1/2 z-30 -translate-y-1/2 rounded-l-lg border border-r-0 border-[var(--stone-300)] bg-white/90 px-2 py-4 shadow-sm backdrop-blur transition-all hover:bg-[var(--stone-100)] hover:px-3"
+        className="fixed right-0 top-1/2 z-30 -translate-y-1/2 rounded-l-lg border border-r-0 border-[var(--paper-border)] bg-[var(--paper-card)]/90 px-2 py-4 shadow-sm backdrop-blur transition-all hover:bg-[var(--paper-card-deep)] hover:px-3"
       >
         <span
-          className="block text-[10px] font-medium uppercase tracking-[2px] text-[var(--stone-500)]"
+          className="block font-mono text-[10px] uppercase tracking-[2px] text-[var(--paper-ink-muted)]"
           style={{ writingMode: "vertical-rl" }}
         >
           Project Board
@@ -39,7 +39,7 @@ export function KanbanPanel() {
       <motion.div
         animate={{ x: open ? 0 : "100%" }}
         transition={{ type: "spring", damping: 30, stiffness: 300 }}
-        className={`fixed bottom-0 right-0 top-0 z-50 w-[340px] overflow-y-auto border-l border-[var(--stone-200)] bg-[var(--stone-50)] p-6 shadow-xl sm:w-[380px] ${open ? "" : "pointer-events-none"}`}
+        className={`fixed bottom-0 right-0 top-0 z-50 w-[340px] overflow-y-auto border-l border-[var(--paper-border)] bg-[var(--paper-bg)] p-6 shadow-xl sm:w-[380px] ${open ? "" : "pointer-events-none"}`}
       >
         <button
           onClick={() => setOpen(false)}

@@ -12,7 +12,7 @@ export function WorkSection({
   return (
     <section id="work">
       <ScrollReveal>
-        <p className="text-[10px] font-medium uppercase tracking-[3px] text-[var(--stone-400)]">
+        <p className="text-[10px] font-medium uppercase tracking-[3px] text-[var(--paper-ink-muted)]">
           Currently
         </p>
         <a
@@ -44,7 +44,7 @@ export function WorkSection({
 
       <div className="mt-8">
         <ScrollReveal delay={0.1}>
-          <p className="text-[10px] font-medium uppercase tracking-[3px] text-[var(--stone-400)]">
+          <p className="text-[10px] font-medium uppercase tracking-[3px] text-[var(--paper-ink-muted)]">
             Side Projects
           </p>
         </ScrollReveal>
@@ -58,6 +58,7 @@ export function WorkSection({
               meta="basidekick.com"
               href="https://basidekick.com"
               images={basidekickImages}
+              plate="No. 1"
             />
           </ScrollReveal>
           <ScrollReveal delay={0.25}>
@@ -69,6 +70,7 @@ export function WorkSection({
               meta="Open Source"
               href="https://rbhans.github.io/opencrate-site/"
               images={opencrateImages}
+              plate="No. 2"
             />
           </ScrollReveal>
         </div>

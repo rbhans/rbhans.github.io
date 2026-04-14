@@ -57,14 +57,14 @@ export function Footer() {
             href={link.href}
             target={link.href.startsWith("mailto:") ? undefined : "_blank"}
             rel={link.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
-            className="flex items-center gap-1.5 text-xs text-[var(--stone-500)] transition-colors hover:text-[var(--stone-900)]"
+            className="flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[1.5px] text-[var(--paper-ink-muted)] transition-colors hover:text-[var(--stone-900)]"
           >
             {link.icon}
             {link.label}
           </a>
         ))}
       </div>
-      <p className="mt-3 text-[11px] text-[var(--stone-400)]">
+      <p className="mt-3 font-[family-name:var(--font-playfair)] text-[11px] italic text-[var(--paper-ink-muted)]">
         &copy; {new Date().getFullYear()} Ben Hansen
       </p>
     </footer>

@@ -12,7 +12,7 @@ import { getImagesFromDir } from "@/lib/images";
 
 
 function Divider() {
-  return <hr className="border-[var(--stone-200)]" />;
+  return <hr className="border-t border-dashed border-[var(--paper-border-strong)]" />;
 }
 
 export default function Home() {
@@ -31,7 +31,7 @@ export default function Home() {
 
       {/* Main content */}
       <div className="relative z-10 mx-auto max-w-2xl px-6 md:px-8">
-        <div className="sticky top-0 z-20 -mx-6 bg-[var(--stone-50)]/90 px-6 py-3 backdrop-blur-sm md:-mx-8 md:px-8">
+        <div className="sticky top-0 z-20 -mx-6 bg-[var(--paper-bg)]/90 px-6 py-3 backdrop-blur-sm md:-mx-8 md:px-8">
           <PillNav />
         </div>
 

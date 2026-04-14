@@ -14,10 +14,10 @@ export function LanguageBar({
   return (
     <div
       ref={ref}
-      className="rounded-xl border border-[var(--stone-200)] bg-white p-4"
+      className="paper-ruled border border-[var(--paper-border)] p-4"
     >
-      <p className="text-[10px] font-medium uppercase tracking-[2px] text-[var(--stone-400)]">
-        Languages
+      <p className="font-mono text-[9px] uppercase tracking-[2px] text-[var(--paper-ink-muted)]">
+        Languages · Spectrum
       </p>
       <div className="mt-2 flex h-1.5 gap-0.5 overflow-hidden rounded-full">
         {languages.map((lang, i) => (
@@ -35,7 +35,7 @@ export function LanguageBar({
           />
         ))}
       </div>
-      <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-[11px] text-[var(--stone-500)]">
+      <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 font-mono text-[10px] text-[var(--paper-ink-muted)]">
         {languages.map((lang) => (
           <span key={lang.name} className="flex items-center gap-1.5">
             <span

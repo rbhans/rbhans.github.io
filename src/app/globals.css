@@ -12,10 +12,21 @@
   --accent-rust: #dea584;
   --accent-sky: #3178c6;
   --accent-yellow: #f1e05a;
+
+  /* Field-guide paper palette — warm off-white */
+  --paper-bg: #f5f1e8;
+  --paper-card: #fbf8f1;
+  --paper-card-deep: #ebe6d8;
+  --paper-border: #ddd5c3;
+  --paper-border-strong: rgba(90, 74, 42, 0.3);
+  --paper-ink-muted: #6b5a3f;
+  --paper-rule: rgba(120, 90, 40, 0.055);
+  --paper-red: rgba(184, 98, 98, 0.38);
+  --paper-washi: #d4c8ad;
 }
 
 @theme inline {
-  --color-background: var(--stone-50);
+  --color-background: var(--paper-bg);
   --color-foreground: var(--stone-900);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
@@ -23,7 +34,7 @@
 }
 
 body {
-  background: var(--stone-50);
+  background: var(--paper-bg);
   color: var(--stone-900);
 }
 
@@ -31,3 +42,13 @@ html {
   scroll-behavior: smooth;
 }
 
+.paper-ruled {
+  background-color: var(--paper-card);
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent 0,
+    transparent 23px,
+    var(--paper-rule) 23px,
+    var(--paper-rule) 24px
+  );
+}

@@ -14,8 +14,8 @@ export function PillNav() {
           href={`#${s.id}`}
           className={`rounded-full px-4 py-1.5 text-xs font-medium transition-colors ${
             i === 0
-              ? "bg-[var(--stone-900)] text-[var(--stone-50)]"
-              : "border border-[var(--stone-300)] text-[var(--stone-600)] hover:border-[var(--stone-400)] hover:text-[var(--stone-900)]"
+              ? "bg-[var(--stone-900)] text-[var(--paper-card)]"
+              : "border border-[var(--paper-border)] text-[var(--paper-ink-muted)] hover:border-[var(--paper-border-strong)] hover:text-[var(--stone-900)]"
           }`}
         >
           {s.label}

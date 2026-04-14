@@ -14,7 +14,7 @@ export async function GitHubSection() {
   return (
     <section id="github">
       <ScrollReveal>
-        <p className="text-[10px] font-medium uppercase tracking-[3px] text-[var(--stone-400)]">
+        <p className="text-[10px] font-medium uppercase tracking-[3px] text-[var(--paper-ink-muted)]">
           Development
         </p>
         <h2 className="mt-2 font-[family-name:var(--font-playfair)] text-xl text-[var(--stone-900)]">
@@ -27,11 +27,14 @@ export async function GitHubSection() {
           <div className="mt-4 grid grid-cols-2 gap-3">
             {statCards.map((card, i) => (
               <ScrollReveal key={card.label} delay={0.1 + i * 0.1}>
-                <div className="rounded-xl border border-[var(--stone-200)] bg-white p-4 text-center">
-                  <div className="font-[family-name:var(--font-playfair)] text-2xl text-[var(--stone-900)]">
+                <div className="paper-ruled border border-[var(--paper-border)] p-4 text-center">
+                  <p className="font-mono text-[9px] uppercase tracking-[2px] text-[var(--paper-ink-muted)]">
+                    Tally · 0{i + 1}
+                  </p>
+                  <div className="mt-2 font-[family-name:var(--font-playfair)] text-3xl text-[var(--stone-900)]">
                     <CountUp target={card.value} />
                   </div>
-                  <p className="mt-1 text-[10px] font-medium uppercase tracking-[2px] text-[var(--stone-400)]">
+                  <p className="mt-1 font-[family-name:var(--font-playfair)] text-[12px] italic text-[var(--paper-ink-muted)]">
                     {card.label}
                   </p>
                 </div>
@@ -47,7 +50,7 @@ export async function GitHubSection() {
         </>
       ) : (
         <ScrollReveal delay={0.1}>
-          <p className="mt-4 text-sm text-[var(--stone-400)]">
+          <p className="mt-4 text-sm text-[var(--paper-ink-muted)]">
             GitHub stats loading&hellip;
           </p>
         </ScrollReveal>
